@@ -1,0 +1,16 @@
+1.0
+---
+
+* Backend d'authentification REMOTE_USER
+
+* Middleware adaptatif
+
+* templatetags les urls
+
+* décorateur is_employe
+
+* Mode SANBOX
+
+    - ursurpation compte locale
+
+    - simulation du serveur d'identités

@@ -1,0 +1,32 @@
+<html>
+
+    <head>
+        <style>
+            body {width: 400px; margin-left: auto; margin-right: auto;
+                margin-top: 100px; color: #333333; font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif; font-size: 12px; }
+            input {font-family: "Lucida Grande",Verdana,Arial,sans-serif; font-size: 11px;  margin: 2px 0; padding: 2px 3px; vertical-align: middle; }
+            input[type="submit"] {background-color: #7CA0C7; border: 2px solid #5B80B2; color: white; font-weight: bold; }
+            ul {margin: 0; padding: 0}
+            .box {background-color: white; border: 1px solid #DDDDDD; padding: 12px;}
+            .errorlist li {color: red; display: block; margin: 0 0 3px; }
+            .info {background-color: #FFFFCC; border: 1px solid #DDDDDD; color: #666666; display: block; font-size: 12px; padding: 6px 4px; }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="box">
+            <h1>SANDBOX : id.auf.org</h1>
+            <h3>Simulation de la connexion avec le serveur d'identités</h3>
+            <p class="info">Taper le l'identifiant pour vous connectez avec un compte
+            (django user) qui existe localement.</p>
+
+            <form action="" method="post">{% csrf_token %}
+                {{ form }}
+                <input type="submit" value="connexion"/>
+            </form>
+        <div>
+
+    </body>
+
+</html>
