@@ -19,6 +19,10 @@ Installer Mellon
 
 .. warning::
 
+    TODO : Demander à JC pour le dépôt AUF
+
+.. warning::
+
     La version installée doit respecter ces versions:
     
     * mod_mellon >= 0.4
@@ -39,8 +43,8 @@ Créer un nouveau host
 Ajout d'un host dans le fichier *etc/hosts*, exemple ici: **olarcheveque**
 
 
-Créer fichiers pour communiquer avec le serveur d'identités
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Créer les fichiers pour communiquer avec le serveur d'identités
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 **metadata.xml**::
 
@@ -82,4 +86,34 @@ dans /etc/site-available/olarcheveque:
 .. note::
 
   Ne pas oublier d'activer le vhost avec **a2ensite**.
+
+Déboggage
+=========
+
+.. versionadded:: 1.1
+
+    Les variables transférées par mellon peuvent être loggées
+    pour fin d'examen.
+
+Exemple de configuration de LOGGING dans *project/conf.py*::
+
+    import os
+    from django.conf.global_settings import LOGGING as DEFAULT_LOGGING
+
+    PROJECT_ROOT = os.path.dirname(__file__)
+    SITE_ROOT = os.path.dirname(PROJECT_ROOT)
+    
+    LOGGING = DEFAULT_LOGGING
+
+    LOGGING['handlers']['file'] = {
+        'level':'DEBUG',
+        'class':'logging.FileHandler',
+        'filename': os.path.join(SITE_ROOT, 'django.log'),
+    }
+
+    LOGGING['loggers']['SAML'] = {
+        'handlers': ['file', ],
+        'level': 'DEBUG',
+        'propogate': False
+        }
 

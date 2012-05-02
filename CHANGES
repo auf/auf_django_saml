@@ -1,3 +1,10 @@
+1.1
+---
+
+* Logging SAML
+
+* synchro des données du serveur d'identités au login avec le user local
+
 1.0
 ---
 
