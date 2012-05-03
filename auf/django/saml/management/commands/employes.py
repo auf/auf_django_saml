@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 from auf.django.references import models as ref
 
@@ -18,6 +18,9 @@ class Command(BaseCommand):
         if args[0] == 'import':
             nb_employes = 0
             for e in ref.Employe.objects.filter(actif=True):
+                # certains employés n'ont pas de courriel
+                if e.courriel in ("", None):
+                    continue
                 username = e.courriel.replace('@auf.org', '')
                 django_user, created = \
                     User.objects.get_or_create(username=username)
