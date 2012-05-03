@@ -27,10 +27,11 @@ def configure_user(sender, request, user, *args, **kwargs):
     Au login, on synchronise les infos du serveur d'identités
     avec le user local
     """
-    meta = request.META
-    user.email = meta['MELLON_mail']
-    user.first_name = meta['MELLON_gn']
-    user.last_name = meta['MELLON_sn']
-    user.save()
+    if saml_settings.SAML_AUTH:
+        meta = request.META
+        user.email = meta['MELLON_mail']
+        user.first_name = meta['MELLON_gn']
+        user.last_name = meta['MELLON_sn']
+        user.save()
 
 user_logged_in.connect(configure_user)
