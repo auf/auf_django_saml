@@ -12,4 +12,5 @@ Ce paquet propose les outils pour coupler un site Django avec le `serveur d'iden
    integration
    deploiement
    fonctionnement
+   outils
    changements
