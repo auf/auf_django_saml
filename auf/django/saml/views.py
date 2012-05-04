@@ -11,13 +11,18 @@ from settings import SAML_REDIRECT_FIELD_NAME,\
         SAML_MELLON_LOGIN_URL,\
         SAML_MELLON_LOGOUT_URL,\
         SAML_CHANGE_PASSWORD_URL,\
-        SAML_LOGOUT_REDIRECT_URL
+        SAML_LOGOUT_REDIRECT_URL, \
+        SAML_AUTH
 
 
 def redirect_to_login(request, redirect_to=None, do_redirect=True):
     if redirect_to is None:
         redirect_to = request.get_full_path()
-    url = "%s?%s=%s" % (SAML_MELLON_LOGIN_URL,
+    if SAML_AUTH:
+        base_url = SAML_MELLON_LOGIN_URL
+    else:
+        base_url = reverse('sandbox_login')
+    url = "%s?%s=%s" % (base_url,
             SAML_REDIRECT_FIELD_NAME,
             redirect_to,
             )
@@ -66,7 +71,11 @@ def local_logout(request, ):
     """
     query_string = request.META['QUERY_STRING']
     auth_logout(request)
-    logout_url = "%s?%s" % (SAML_MELLON_LOGOUT_URL, query_string)
+    if SAML_AUTH:
+        base_url = SAML_MELLON_LOGOUT_URL
+    else:
+        base_url = reverse('sandbox_logout')
+    logout_url = "%s?%s" % (base_url, query_string)
     response = HttpResponse(content="", status=303)
     response["Location"] = logout_url
     return response
