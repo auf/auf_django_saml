@@ -17,4 +17,6 @@ src/*
 
 *-info
 doc/_*
+doc/build
+doc/pip-log.txt
 dist

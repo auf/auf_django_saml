@@ -1,3 +1,10 @@
+1.5
+---
+
+* Ajout du décorateur login_required
+
+* Ajout de la fonction de redirection login
+
 1.4
 ---
 
