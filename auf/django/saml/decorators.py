@@ -30,7 +30,7 @@ def login_required(function=None,
     """
 
     def _wrapped_view(request, *args, **kwargs):
-        if request.user.is_authenticated:
+        if request.user.is_authenticated():
             return function(request, *args, **kwargs)
         else:
             return redirect_to_login(request, redirect_to=login_url)
