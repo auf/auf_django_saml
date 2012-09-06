@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -76,9 +75,7 @@ def local_logout(request, ):
     else:
         base_url = reverse('sandbox_logout')
     logout_url = "%s?%s" % (base_url, query_string)
-    response = HttpResponse(content="", status=303)
-    response["Location"] = logout_url
-    return response
+    return redirect(logout_url)
 
 
 def mellon_logout(request, ):
