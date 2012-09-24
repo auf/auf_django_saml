@@ -1,3 +1,8 @@
+1.9
+---
+
+* saml/auth.html pour générer le login / logout avec les urls de mellon
+
 1.8
 ---
 

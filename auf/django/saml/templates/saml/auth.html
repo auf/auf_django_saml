@@ -1,0 +1,11 @@
+{% load saml %}
+
+<div id="connexion">
+      <img src="{{ STATIC_URL }}saml/img/idauf_16.png" />
+      {% if request.user.is_authenticated %}
+          <span>{{ user }}</span>
+          <a href="{% mellon_logout_url %}">{% trans "Déconnexion" %}</a>
+      {% else %}
+      <a href="{% mellon_login_url %}">{% trans "Connexion sur id.auf.org" %}</a>
+      {% endif %}
+</div>

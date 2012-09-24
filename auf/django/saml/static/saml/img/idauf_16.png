@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/static/idauf_32.png" />
+    <link rel="stylesheet" href="/static/authentic2/css/style.css" />
+    <link rel="stylesheet" href="/static/jquery/css/jquery-ui.custom.css" />
+    <link rel="stylesheet" href="/static/ulx/css/ulx.css" />
+    <title>Connexion id.auf</title>
+    
+    
+<script type="text/javascript" src="/static/jquery/js/jquery.js"></script>
+<script type="text/javascript" src="/static/jquery/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/static/jquery/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/static/jquery/js/jquery.simplemodal.js"></script>
+
+</head>
+
+<body  >
+  <div id="wrap" class="ui-corner-all">
+    <a href="http://www.auf.org/"><div id="header">
+      
+      <img width="152" height="100" src="/static/Logo_Auf_FR.png" />
+      
+    </div></a>
+
+    <a href="/"><div id="splash">
+      <div class="logo">
+        <img width="48" height="48" src="/static/idauf_48.png" />
+        <span>id.auf</span>
+      </div>
+      <div class="titre">
+        <span>L'authentification unifiée de l'AUF</span>
+      </div>
+    </div></a>
+
+    <div id="content" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+        
+        <div id="left-col">
+        
+        <h2>Qu'est-ce que id.auf ?</h2>
+        <p>C'est votre nouvelle façon de vous connecter globalement à tous vos services de l'AUF.</p>
+        <p>Où que vous soyez et à partir de n'importe quel navigateur.</p>
+        <p>→ <a href="https://id.auf.org/a-propos">En savoir plus sur id.auf</a></p>
+
+        
+        </div>
+
+        <div id="right-col">
+        
+
+
+
+
+
+
+
+<h2>Connexion</h2>
+<div>
+<form method="post" action=""><div style='display:none;'><input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='2a260d840e5ba95514a9abab65a93084' /></div>
+<p><label for="id_username">Nom d&#39;utilisateur:</label> <input autocomplete="off" id="id_username" type="text" name="username" maxlength="30" /></p>
+<p><label for="id_password">Mot de passe:</label> <input autocomplete="off" type="password" name="password" id="id_password" /></p>
+<input type="submit" name="submit-password" value="Se connecter"/>
+
+</form>
+</div>
+
+
+
+<div class="login-actions">
+<p>→  <a href="mailto:assistance-informatique@auf.org?subject=Mot de passe id.auf oublié">Mot de passe oublié ?</a></p>
+</div>
+
+
+
+
+
+        </div>
+
+        
+        <div class="clear"></div>
+    </div>
+
+    <div id="footer">
+        
+        <p>
+        <a href="https://id.auf.org/">Accueil</a>
+        | <a href="https://id.auf.org/a-propos">À propos d'id.auf</a>
+        
+        <!-- | <a href="https://id.auf.org/politique-de-mot-de-passe">Politique de mot de passe</a> --></p>
+        <p>Copyright © 2012 AUF — Tous droits réservés</p>
+        
+    </div>
+<!--
+    <div id="copyright">
+        <span>Copyright © 2012 AUF — Tous droits réservés</span>
+    </div>
+-->
+  </div> <!-- #wrap -->
+</body>
+
+</html>
