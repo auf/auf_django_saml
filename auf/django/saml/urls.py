@@ -2,6 +2,9 @@
 
 from django.conf.urls.defaults import patterns, url
 
+import monkey
+
+
 urlpatterns = patterns(
     '',
     url(r'^logout/$', 'auf.django.saml.views.local_logout',

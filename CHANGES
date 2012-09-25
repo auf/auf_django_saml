@@ -1,3 +1,9 @@
+1.11
+----
+
+* configuration auto de LOGIN_URL et LOGOUT_URL sauf si on a le flag
+  'SAML_AUTO_AUTH_URLS' à True
+
 1.10
 ----
 

@@ -10,6 +10,9 @@ from django.conf import settings
 # Active par défaut l'utilisation du serveur d'identités
 SAML_AUTH = getattr(settings, 'SAML_AUTH', True)
 
+# Assigne automaquement LOGIN_URL et LOGOUT_URL dans settings
+SAML_AUTO_AUTH_URLS = getattr(settings, 'SAML_AUTO_AUTH_URLS', True)
+
 # Variable utilisée pour fournir au serveur d'identités les
 # adresses de retour du site.
 SAML_REDIRECT_FIELD_NAME = getattr(settings, '', 'ReturnTo')
