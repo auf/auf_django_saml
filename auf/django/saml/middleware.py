@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import logging
+
 from django.contrib.auth.signals import user_logged_in
 from django.contrib.auth.middleware import RemoteUserMiddleware
 from auf.django.saml import settings as saml_settings
+
+logger = logging.getLogger('SAML')
 
 
 class SPMiddleware(RemoteUserMiddleware):
@@ -12,7 +15,8 @@ class SPMiddleware(RemoteUserMiddleware):
         """
         Log MELLON an REMOTE_USER
         """
-        logger = logging.getLogger('SAML')
+        logger.info(u"\nProcess request")
+        logger.info(u"===============")
         for k, v in request.META.items():
             if k.startswith('MELLON') or k is 'REMOTE_USER':
                 logger.info('%s : %s' % (k, v))
@@ -28,6 +32,7 @@ def configure_user(sender, request, user, *args, **kwargs):
     avec le user local
     """
     if saml_settings.SAML_AUTH:
+        logger.info(u"* synchro du user local avec les infos de id.auf")
         meta = request.META
         user.email = meta['MELLON_mail']
         user.first_name = meta['MELLON_gn']

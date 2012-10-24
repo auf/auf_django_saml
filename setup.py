@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 name = 'auf.django.saml'
-version = '1.12'
+version = '1.13'
 
 setup(name=name,
       version=version,

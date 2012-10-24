@@ -1,4 +1,13 @@
+1.13
+----
+
+* Ajout des logs infos
+
+* Patch de L'AdminSite pour que la vue index n'occasionne pas un loop de
+  redirect avec id.auf.
+
 1.12
+----
 
 * retrocompatibilté django 1.1
 
