@@ -1,3 +1,12 @@
+1.14
+----
+
+* Fix clean_username returne un résultat sans "@auf.org"
+
+* Fix clean_username qui n'était pas appelée
+
+* esthétique des logs INFO pour sentry
+
 1.13
 ----
 

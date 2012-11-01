@@ -15,14 +15,15 @@ class SPMiddleware(RemoteUserMiddleware):
         """
         Log MELLON an REMOTE_USER
         """
-        logger.info(u"\nProcess request")
-        logger.info(u"===============")
+        info = u"\n%s" % __name__
         for k, v in request.META.items():
             if k.startswith('MELLON') or k is 'REMOTE_USER':
-                logger.info('%s : %s' % (k, v))
+                info += u"\n%s : %s" % (k, v)
 
+        logger.info(info)
         if not saml_settings.SAML_AUTH:
             return
+
         return super(SPMiddleware, self).process_request(request)
 
 
@@ -32,11 +33,12 @@ def configure_user(sender, request, user, *args, **kwargs):
     avec le user local
     """
     if saml_settings.SAML_AUTH:
-        logger.info(u"* synchro du user local avec les infos de id.auf")
+        info = u"\n%s" % __name__
         meta = request.META
         user.email = meta['MELLON_mail']
         user.first_name = meta['MELLON_gn']
         user.last_name = meta['MELLON_sn']
         user.save()
+        logger.info(info)
 
 user_logged_in.connect(configure_user)

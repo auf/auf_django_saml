@@ -13,26 +13,26 @@ logger = logging.getLogger('SAML')
 class _BackendMixin:
 
     def clean_username(self, username):
-        logger.info(u"\nClean username")
-        logger.info(u"==============")
-        logger.info(u"username original : %s" % username)
+        info = u"username original : %s" % username
         clean_username = username.replace('@auf.org', '')
-        logger.info(u"username clean : %s" % clean_username)
+        info += u"\nusername clean : %s" % clean_username
+        logger.info(info)
+        return clean_username
 
-
-class FakeSPBackend(ModelBackend, _BackendMixin):
+class FakeSPBackend(_BackendMixin, ModelBackend,):
     """
     On autentifie uniquement sur le username
     """
 
     def authenticate(self, username=None, password=None):
+        username = self.clean_username(username)
         try:
             return User.objects.get(username=username)
         except User.DoesNotExist:
             return None
 
 
-class RealSPBackend(RemoteUserBackend, _BackendMixin):
+class RealSPBackend(_BackendMixin, RemoteUserBackend):
     """
     Backend reposant sur le id.auf.org
     """
@@ -50,14 +50,15 @@ class SPBackend(_SPBackend):
     Backend selon la conf
     """
 
-    def authenticate(self, **kwargs):
-        logger.info(u"\nauth challenge")
-        logger.info(u"==============")
+    def authenticate(self, *args, **kwargs):
+        info = u"%s" % __name__
         for k, v in kwargs.items():
             if k == 'password':
                 v = '****'
-            logger.info("* %s : %s" % (k, v))
+            info += "\n* %s : %s" % (k, v)
+        logger.info(info)
 
-        user = super(SPBackend, self).authenticate(**kwargs)
-        logger.info(u"Django user authentifié : %s" % user)
+        user = super(SPBackend, self).authenticate(*args, **kwargs)
+        info = u"Django user authentifié : %s" % user
+        logger.info(info)
         return user
