@@ -18,7 +18,7 @@ class SPMiddleware(RemoteUserMiddleware):
         info = u""
         for k, v in request.META.items():
             if k.startswith('MELLON') or k is 'REMOTE_USER':
-                info += u"\n%s : %s" % (k, v)
+                info += u"\n%s : %s" % (k, v.decode('utf-8'))
 
         logger.info(info)
         if not saml_settings.SAML_AUTH:

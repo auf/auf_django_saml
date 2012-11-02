@@ -1,3 +1,8 @@
+1.17
+----
+
+* traiter les valeurs d'environnements non unicodes mais utf-8
+
 1.16
 ----
 * fix variable vide dans le configure_user
