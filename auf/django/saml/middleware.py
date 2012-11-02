@@ -15,7 +15,7 @@ class SPMiddleware(RemoteUserMiddleware):
         """
         Log MELLON an REMOTE_USER
         """
-        info = u"\n%s" % __name__
+        info = u""
         for k, v in request.META.items():
             if k.startswith('MELLON') or k is 'REMOTE_USER':
                 info += u"\n%s : %s" % (k, v)
@@ -33,7 +33,6 @@ def configure_user(sender, request, user, *args, **kwargs):
     avec le user local
     """
     if saml_settings.SAML_AUTH:
-        info = u"\n%s" % __name__
         meta = request.META
         user.email = meta['MELLON_mail']
         user.first_name = meta['MELLON_gn']
