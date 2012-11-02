@@ -38,6 +38,6 @@ def configure_user(sender, request, user, *args, **kwargs):
         user.first_name = meta['MELLON_gn']
         user.last_name = meta['MELLON_sn']
         user.save()
-        logger.info(info)
+        logger.info(u"")
 
 user_logged_in.connect(configure_user)
