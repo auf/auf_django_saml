@@ -19,6 +19,7 @@ class _BackendMixin:
         logger.info(info)
         return clean_username
 
+
 class FakeSPBackend(_BackendMixin, ModelBackend,):
     """
     On autentifie uniquement sur le username
@@ -36,7 +37,7 @@ class RealSPBackend(_BackendMixin, RemoteUserBackend):
     """
     Backend reposant sur le id.auf.org
     """
-    create_unknown_user = getattr(settings, 'SAML_AUTO_CREATION', True)
+    create_unknown_user = settings.SAML_AUTO_CREATION
 
 
 if settings.SAML_AUTH:

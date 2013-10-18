@@ -29,7 +29,8 @@ if saml_settings.SAML_AUTO_AUTH_URLS:
         LOGOUT_URL = '/sandbox/logout'
     info += u"\n* LOGIN_URL: %s" % LOGIN_URL
     info += u"\n* LOGOUT_URL: %s" % LOGOUT_URL
-    info += u"\n* REDIRECT_FIELD_NAME: %s" % saml_settings.SAML_REDIRECT_FIELD_NAME
+    info += u"\n* REDIRECT_FIELD_NAME: %s" % \
+            saml_settings.SAML_REDIRECT_FIELD_NAME
 
     django.contrib.auth.REDIRECT_FIELD_NAME = \
         saml_settings.SAML_REDIRECT_FIELD_NAME
@@ -55,7 +56,7 @@ def custom_admin_view(self, view, cacheable=False):
         """
         if not self.has_permission(request):
             return HttpResponseForbidden(
-                    _(u"Votre compte ne permet pas d'accéder à cette page"))
+                _(u"Votre compte ne permet pas d'accéder à cette page"))
         return view(request, *args, **kwargs)
 
     if view.__name__ == 'index':
@@ -63,5 +64,6 @@ def custom_admin_view(self, view, cacheable=False):
     else:
         return original_admin_view(self, view, cacheable=False)
 
-logger.info(u"Patch de la admin.site pour gérer le login forcé de la page d'index")
+logger.info(u"Patch de la admin.site pour \
+        gérer le login forcé de la page d'index")
 site.__class__.admin_view = custom_admin_view

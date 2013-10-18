@@ -21,4 +21,3 @@ class RemoteUserForm(forms.Form):
                 raise forms.ValidationError("Aucun utilisateur\
                 local.")
         return self.cleaned_data
-

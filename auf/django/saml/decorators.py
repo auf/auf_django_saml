@@ -5,7 +5,8 @@ from permissions import is_employe
 from settings import SAML_REDIRECT_FIELD_NAME
 
 
-def employe_required(function=None,
+def employe_required(
+        function=None,
         redirect_field_name=SAML_REDIRECT_FIELD_NAME,
         login_url=None):
     """
@@ -21,7 +22,8 @@ def employe_required(function=None,
     return _wrapped_view
 
 
-def login_required(function=None,
+def login_required(
+        function=None,
         redirect_field_name=SAML_REDIRECT_FIELD_NAME,
         login_url=None):
     """

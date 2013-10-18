@@ -5,13 +5,15 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.template import RequestContext
 from django.shortcuts import render_to_response, redirect
+
 from forms import RemoteUserForm
+
 from settings import SAML_REDIRECT_FIELD_NAME,\
-        SAML_MELLON_LOGIN_URL,\
-        SAML_MELLON_LOGOUT_URL,\
-        SAML_CHANGE_PASSWORD_URL,\
-        SAML_LOGOUT_REDIRECT_URL, \
-        SAML_AUTH
+    SAML_MELLON_LOGIN_URL,\
+    SAML_MELLON_LOGOUT_URL,\
+    SAML_CHANGE_PASSWORD_URL,\
+    SAML_LOGOUT_REDIRECT_URL, \
+    SAML_AUTH
 
 
 def redirect_to_login(request, redirect_to=None, do_redirect=True):
@@ -21,10 +23,11 @@ def redirect_to_login(request, redirect_to=None, do_redirect=True):
         base_url = SAML_MELLON_LOGIN_URL
     else:
         base_url = reverse('sandbox_login')
-    url = "%s?%s=%s" % (base_url,
-            SAML_REDIRECT_FIELD_NAME,
-            redirect_to,
-            )
+    url = "%s?%s=%s" % (
+        base_url,
+        SAML_REDIRECT_FIELD_NAME,
+        redirect_to,
+        )
     if do_redirect:
         return redirect(url)
     else:
@@ -34,10 +37,11 @@ def redirect_to_login(request, redirect_to=None, do_redirect=True):
 def redirect_to_logout(request, redirect_to=None, do_redirect=True):
     if redirect_to is None:
         redirect_to = SAML_LOGOUT_REDIRECT_URL
-    url = "%s?%s=%s" % (reverse('local_logout'),
-            SAML_REDIRECT_FIELD_NAME,
-            redirect_to,
-            )
+    url = "%s?%s=%s" % (
+        reverse('local_logout'),
+        SAML_REDIRECT_FIELD_NAME,
+        redirect_to,
+        )
     if do_redirect:
         return redirect(url)
     else:
@@ -59,7 +63,8 @@ def login_form(request, ):
         form = RemoteUserForm(request)
 
     c = {'form': form}
-    return render_to_response("saml/login_form.html",
+    return render_to_response(
+        "saml/login_form.html",
         c,
         context_instance=RequestContext(request))
 

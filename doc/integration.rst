@@ -13,7 +13,7 @@ déconnexion** si le user est connecté ou non:
 
 .. code-block:: guess
 
-    {% load saml %}
+    {% load saml_tags %}
     
     {% if request.user.is_authenticated %}
         {% mellon_logout_url %}

@@ -20,3 +20,7 @@ doc/_*
 doc/build
 doc/pip-log.txt
 dist
+
+.tox
+.coverage
+htmlcov

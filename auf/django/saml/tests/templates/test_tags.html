@@ -1,0 +1,14 @@
+{% load saml_tags %}
+
+test_templatetag_login_default:{% mellon_login_url %}
+
+test_templatetag_login_string:{% mellon_login_url '/admin' %}
+
+test_templatetag_login_var:{% mellon_login_url request.get_full_path %}
+
+
+test_templatetag_logout_default:{% mellon_logout_url %}
+
+test_templatetag_logout_string:{% mellon_logout_url '/admin' %}
+
+test_templatetag_logout_var:{% mellon_logout_url request.get_full_path %}
