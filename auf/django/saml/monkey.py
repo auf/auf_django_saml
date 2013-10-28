@@ -54,6 +54,8 @@ def custom_admin_view(self, view, cacheable=False):
     def inner(request, *args, **kwargs):
         """
         """
+        if not request.user.is_authenticated():
+            return self.login(request)
         if not self.has_permission(request):
             return HttpResponseForbidden(
                 _(u"Votre compte ne permet pas d'accéder à cette page"))

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import urllib
+
 from django.core.urlresolvers import reverse
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
@@ -17,17 +19,19 @@ from settings import SAML_REDIRECT_FIELD_NAME,\
 
 
 def redirect_to_login(request, redirect_to=None, do_redirect=True):
+
     if redirect_to is None:
         redirect_to = request.get_full_path()
+
+    qs = {SAML_REDIRECT_FIELD_NAME: redirect_to}
+
     if SAML_AUTH:
         base_url = SAML_MELLON_LOGIN_URL
     else:
         base_url = reverse('sandbox_login')
-    url = "%s?%s=%s" % (
-        base_url,
-        SAML_REDIRECT_FIELD_NAME,
-        redirect_to,
-        )
+
+    url = "%s?%s" % (base_url, urllib.urlencode(qs))
+
     if do_redirect:
         return redirect(url)
     else:
@@ -37,11 +41,12 @@ def redirect_to_login(request, redirect_to=None, do_redirect=True):
 def redirect_to_logout(request, redirect_to=None, do_redirect=True):
     if redirect_to is None:
         redirect_to = SAML_LOGOUT_REDIRECT_URL
-    url = "%s?%s=%s" % (
-        reverse('local_logout'),
-        SAML_REDIRECT_FIELD_NAME,
-        redirect_to,
-        )
+
+    qs = {SAML_REDIRECT_FIELD_NAME: redirect_to}
+
+    url = u"%s?%s" % (
+        reverse('local_logout'), urllib.urlencode(qs), )
+
     if do_redirect:
         return redirect(url)
     else:
@@ -53,7 +58,9 @@ def login_form(request, ):
     Page de login en mode développement
     permet de se connecter avec un user selon son username défini localemement
     """
-    redirect_to = request.REQUEST.get(SAML_REDIRECT_FIELD_NAME, '/')
+    redirect_to = urllib.unquote_plus(
+        request.REQUEST.get(SAML_REDIRECT_FIELD_NAME, '/'))
+
     if request.method == "POST":
         form = RemoteUserForm(request, request.POST)
         if form.is_valid():
@@ -87,7 +94,8 @@ def mellon_logout(request, ):
     """
     Simule la vue qui de mellon qui initie le logout sur le l'IdP
     """
-    redirect_to = request.REQUEST.get(SAML_REDIRECT_FIELD_NAME, '/')
+    redirect_to = urllib.unquote_plus(
+        request.REQUEST.get(SAML_REDIRECT_FIELD_NAME, '/'))
     return redirect(redirect_to)
 
 

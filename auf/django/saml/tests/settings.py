@@ -24,6 +24,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'auf.django.saml.tests.middleware.MockMiddleware',
     'auf.django.saml.middleware.SPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
@@ -38,6 +39,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     )
+
+AUTHENTICATION_BACKENDS = (
+    'auf.django.saml.backends.SPBackend',
+)
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), 'templates'),
