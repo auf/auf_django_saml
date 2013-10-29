@@ -10,7 +10,8 @@ from django.contrib.auth.models import User
 
 from auf.django.references import models as ref
 
-from .middleware import LOGGED_USER_EMAIL, ANONYMOUS_KEY, LOGGED_USER_USERNAME
+from .middleware import LOGGED_USER_EMAIL, ANONYMOUS_KEY,\
+    LOGGED_USER_USERNAME, LOGGED_USER_SN, LOGGED_USER_GN
 
 
 class CommonTest(TestCase):
@@ -41,14 +42,27 @@ class CommonTest(TestCase):
 
     def creer_employe(self):
         """
-        Créer un employé correspondant à la personne connecté dans le
-        MockMiddleware.
+        Créer un employé dans le référentiel.
         """
         ref.Employe(
+            nom=LOGGED_USER_GN,
+            prenom=LOGGED_USER_SN,
             implantation_id=1,
             implantation_physique_id=1,
             service_id=1,
             courriel=LOGGED_USER_EMAIL).save()
+
+    def creer_employe_sans_courriel(self):
+        """
+        Créer un employé sans courriel dans le référentiel.
+        """
+        ref.Employe(
+            nom=LOGGED_USER_GN,
+            prenom=LOGGED_USER_SN,
+            implantation_id=1,
+            implantation_physique_id=1,
+            service_id=1,
+            ).save()
 
     def creer_user(self):
         """
