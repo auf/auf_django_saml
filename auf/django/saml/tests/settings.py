@@ -12,10 +12,13 @@ ROOT_URLCONF = 'auf.django.saml.tests.urls'
 DATABASES = {'default':
             {'ENGINE': 'django.db.backends.sqlite3', 'NAME': ':memory:', }}
 
+AUF_REFERENCES_MANAGED = True
+
 INSTALLED_APPS = ('django.contrib.auth',
                   'django.contrib.contenttypes',
                   'django.contrib.sessions',
                   'django.contrib.admin',
+                  'auf.django.references',
                   'auf.django.saml', )
 
 

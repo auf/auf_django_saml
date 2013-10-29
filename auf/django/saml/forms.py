@@ -18,6 +18,5 @@ class RemoteUserForm(forms.Form):
         if username:
             self.user = authenticate(username=username, password=None)
             if self.user is None:
-                raise forms.ValidationError("Aucun utilisateur\
-                local.")
+                raise forms.ValidationError("Aucun utilisateur local.")
         return self.cleaned_data
