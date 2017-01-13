@@ -8,7 +8,7 @@ si SAML_AUTO_AUTH_URLS est positionné à True
 import logging
 
 import django
-from django.utils.functional import update_wrapper
+from functools import update_wrapper
 from django.conf import settings
 from django.http import HttpResponseForbidden
 from django.utils.translation import ugettext as _
