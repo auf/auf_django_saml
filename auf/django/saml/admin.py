@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 
 
 def saml_login(request, extra_context=None):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated():
         redirect_to = request.GET.get(REDIRECT_FIELD_NAME, settings.LOGIN_REDIRECT_URL)
         return HttpResponseRedirect(redirect_to)
     else:
